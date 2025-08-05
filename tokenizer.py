@@ -5,16 +5,17 @@ from fugashi import Tagger
 from pykakasi import kakasi
 
 lbase_dir = "./language-base/"
-lmod_dir = "./language-models/"
+lmod_dir = "./language-model/"
 
 def build_language_model(word_list, language_name="language"):
-    total_words = len(word_list)
     counter = Counter(word_list)
     top20 = counter.most_common(20)
 
+    top20_total = sum(count for _, count in top20)
+
     model = []
     for word, count in top20:
-        prob = count / total_words
+        prob = count / top20_total
         model.append([word, count, round(prob, 6)])
 
     df = pd.DataFrame(model, columns=["Word", "Frequency", "Probability"])
