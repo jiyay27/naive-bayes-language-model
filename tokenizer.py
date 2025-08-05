@@ -26,9 +26,7 @@ def load_and_tokenize(file_path):
         text = f.read().lower()
 
     text = re.sub(r'[^a-zA-Zñáéíóúü\s]', '', text)
-
     words = text.split()
-
     return words
 
 def get_top_words(words, top_n=20):
@@ -40,9 +38,7 @@ def count_ascii_words(file_path):
         text = f.read().lower()
 
     text = re.sub(r'[^a-zA-Zñáéíóúü\s]', '', text)
-
     words = text.split()
-
     return len(words)
 
 def is_japanese_line(line):
